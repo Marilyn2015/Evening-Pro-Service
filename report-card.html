@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact — Evening Pro Service</title>
+<meta name="description" content="Request a quote or ask a question. Call or text Evening Pro Service at 948-220-6393 — after-hours cleaning for offices, apartments, and communities." />
+<meta name="theme-color" content="#060b14" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .contact-wrap{ padding:clamp(70px,10vw,120px) 0 clamp(60px,8vw,110px); position:relative; overflow:hidden; }
+  .contact-glow{ position:absolute; top:-30%; right:-8%; width:60%; height:160%; background:radial-gradient(circle at 60% 40%, var(--teal-glow), transparent 62%); filter:blur(30px); animation:heroPulse 12s ease-in-out infinite alternate; pointer-events:none; }
+  .contact-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1fr 1.05fr; gap:clamp(30px,5vw,60px); align-items:start; }
+  @media (max-width:880px){ .contact-grid{ grid-template-columns:1fr; } }
+
+  .contact-intro h1{ font-family:var(--serif); font-weight:600; font-size:clamp(38px,5.6vw,62px); line-height:1.03; margin-top:18px; }
+  .contact-intro p{ margin:22px 0 0; color:var(--sub); font-size:clamp(17px,2vw,19px); max-width:46ch; }
+
+  .call-block{ margin-top:38px; background:linear-gradient(150deg, var(--bg3), var(--bg2)); border:1px solid var(--line2); border-radius:18px; padding:30px; position:relative; overflow:hidden; }
+  .call-block::after{ content:""; position:absolute; top:-50%; right:-15%; width:55%; height:200%; background:radial-gradient(circle, var(--teal-glow), transparent 60%); filter:blur(20px); pointer-events:none; }
+  .call-block > *{ position:relative; z-index:1; }
+  .call-block .call-label{ font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--mute); font-weight:600; }
+  .call-block .num{ font-family:var(--serif); font-size:clamp(32px,5vw,46px); font-weight:600; line-height:1.05; margin:8px 0 4px; color:var(--ink); }
+  .call-block .num a{ transition:color .2s; }
+  .call-block .num a:hover{ color:var(--teal); }
+  .call-block .hours{ color:var(--sub); font-size:14.5px; margin-top:8px; }
+  .call-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
+
+  .contact-points{ margin-top:30px; display:grid; gap:16px; }
+  .cpoint{ display:flex; gap:14px; align-items:flex-start; }
+  .cpoint .ico{ width:40px; height:40px; flex:0 0 auto; border-radius:11px; background:rgba(45,212,191,.08); border:1px solid rgba(45,212,191,.22); display:flex; align-items:center; justify-content:center; color:var(--teal); }
+  .cpoint .ico svg{ width:20px; height:20px; }
+  .cpoint h3{ font-size:16px; font-weight:600; }
+  .cpoint p{ margin:3px 0 0; color:var(--sub); font-size:14.5px; }
+
+  /* Form card */
+  .form-card{ background:var(--bg2); border:1px solid var(--line); border-radius:20px; padding:clamp(28px,4vw,40px); }
+  .form-card .fc-head{ display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:8px; }
+  .form-card h2{ font-family:var(--serif); font-weight:600; font-size:26px; }
+  .badge{ font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); background:rgba(45,212,191,.1); border:1px solid rgba(45,212,191,.28); padding:5px 11px; border-radius:999px; }
+  .form-card .fc-sub{ color:var(--sub); font-size:15px; margin:0 0 24px; }
+
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:13px; font-weight:600; letter-spacing:.03em; color:var(--sub); margin-bottom:8px; }
+  .field input, .field textarea{
+    width:100%; font:15px/1.5 var(--sans); color:var(--ink);
+    background:var(--bg); border:1px solid var(--line2); border-radius:11px; padding:13px 14px;
+    transition:border-color .18s ease, box-shadow .18s ease, background .18s ease; -webkit-appearance:none;
+  }
+  .field textarea{ min-height:130px; resize:vertical; }
+  .field input::placeholder, .field textarea::placeholder{ color:#5b6a7e; }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(45,212,191,.14); background:var(--bg3); }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:520px){ .row2{ grid-template-columns:1fr; } }
+
+  .submit{ width:100%; margin-top:6px; padding:15px; border-radius:12px; border:none; cursor:not-allowed; font:700 14px/1 var(--sans); letter-spacing:.04em; text-transform:uppercase; color:#04201c; background:var(--teal); opacity:.55; }
+  .form-note{ margin-top:14px; font-size:13.5px; color:var(--mute); text-align:center; }
+  .form-note a{ color:var(--teal); font-weight:600; }
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"></div>
+
+<header id="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Evening Pro Service home">
+      <span class="mark" aria-hidden="true"></span><span class="brand-name">Evening Pro Service</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="services.html">Services</a>
+      <a href="index.html#why">Why us</a>
+      <a href="index.html#serve">Who we serve</a>
+      <a href="report-card.html">Contact</a>
+    </nav>
+    <a class="btn btn--primary nav-cta" href="tel:9482206393">Call 948-220-6393</a>
+  </div>
+</header>
+
+<main>
+  <div class="contact-wrap">
+    <div class="contact-glow" aria-hidden="true"></div>
+    <div class="wrap contact-grid">
+
+      <div class="contact-intro">
+        <span class="eyebrow reveal">Get in touch</span>
+        <h1 class="reveal">Let&rsquo;s make your space spotless.</h1>
+        <p class="reveal">The fastest way to reach us is a call or text. Tell us your building type and schedule, and we&rsquo;ll put together a plan and quote.</p>
+
+        <div class="call-block reveal">
+          <div class="call-label">Call or text today</div>
+          <div class="num"><a href="tel:9482206393">948-220-6393</a></div>
+          <div class="hours">New clients: <strong style="color:var(--ink);">25% off</strong> with a 6-month contract.</div>
+          <div class="call-actions">
+            <a class="btn btn--teal" href="tel:9482206393">Call now</a>
+            <a class="btn btn--ghost" href="sms:9482206393">Send a text</a>
+          </div>
+        </div>
+
+        <div class="contact-points">
+          <div class="cpoint reveal">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div><h3>After-hours service</h3><p>We clean when you&rsquo;re closed — evenings and nights, around your business.</p></div>
+          </div>
+          <div class="cpoint reveal">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div><h3>Insured &amp; professional</h3><p>Reliable, accountable, and covered on every visit.</p></div>
+          </div>
+          <div class="cpoint reveal">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-7-7 19-2.5-8.5z"/></svg></div>
+            <div><h3>Offices, apartments &amp; communities</h3><p>From single suites to whole buildings and shared common areas.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote form. Phone-only for now: fields are here and ready, submission
+           wires to Formspree later. Until then the button is disabled and the
+           note points people to call or text. To enable: set the form action to
+           your Formspree endpoint, change method to "post", remove the disabled
+           attribute on the button, and delete this comment. -->
+      <div class="form-card reveal">
+        <div class="fc-head">
+          <h2>Request a quote</h2>
+          <span class="badge">Online form coming soon</span>
+        </div>
+        <p class="fc-sub">Prefer to type it out? Fill this in — and for now, please call or text so we can respond right away.</p>
+
+        <form action="#" onsubmit="return false;" novalidate>
+          <div class="row2">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">What do you need cleaned?</label>
+            <textarea id="message" name="message" placeholder="Tell us your building type, size, and how often you'd like service."></textarea>
+          </div>
+          <button type="submit" class="submit" disabled aria-disabled="true">Send request</button>
+          <p class="form-note">Online submissions aren&rsquo;t active yet — <a href="tel:9482206393">call or text 948-220-6393</a> and we&rsquo;ll take care of you.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand"><span class="mark mark--sm" aria-hidden="true"></span> Evening Pro Service</div>
+        <p class="foot-tag">Clean spaces, stronger tomorrows. After-hours cleaning for offices, apartments, and communities.</p>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="index.html">Home</a><a href="services.html">Services</a><a href="report-card.html">Contact</a><a href="tel:9482206393">948-220-6393</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="y"></span> Evening Pro Service. A cleaner space for a stronger future.</span>
+      <span class="strong">Offices &middot; Apartments &middot; Communities</span>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
