@@ -26,7 +26,7 @@
   --serif:"Fraunces", Georgia, "Times New Roman", serif;
   --sans:"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --wrap:1120px;
-  --pad:clamp(20px, 5vw, 40px);
+  --pad:clamp(22px, 5vw, 40px);
 }
 
 *{ box-sizing:border-box; }
@@ -114,7 +114,7 @@ header.scrolled{ background:rgba(6,11,20,.92); }
 
 /* ---------- Hero ---------- */
 .hero{ position:relative; overflow:hidden; }
-.hero-inner{ padding:clamp(72px,11vw,132px) 0 clamp(56px,8vw,96px); max-width:840px; position:relative; z-index:1; }
+.hero-inner{ padding-top:clamp(72px,11vw,132px); padding-bottom:clamp(56px,8vw,96px); max-width:840px; position:relative; z-index:1; }
 .hero-glow{
   position:absolute; z-index:0; top:-30%; right:-10%; width:70%; height:150%;
   background:radial-gradient(circle at 60% 40%, var(--teal-glow), transparent 62%);
@@ -226,6 +226,44 @@ footer .wrap{ padding-top:56px; padding-bottom:40px; }
   .hero-logo{ width:min(360px,72vw); height:auto; margin:0 auto 28px; display:block; filter:drop-shadow(0 10px 40px rgba(45,212,191,.18)); }
   .brand{ gap:0; }
 
+
+  /* Hamburger button — hidden on desktop, shown on mobile */
+  .nav-toggle{ display:none; width:44px; height:44px; border:1px solid var(--line2); background:rgba(148,163,184,.06); border-radius:11px; cursor:pointer; padding:0; align-items:center; justify-content:center; flex-direction:column; gap:5px; }
+  .nav-toggle span{ display:block; width:20px; height:2px; background:var(--ink); border-radius:2px; transition:transform .25s ease, opacity .2s ease; }
+  body.menu-open .nav-toggle span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  body.menu-open .nav-toggle span:nth-child(2){ opacity:0; }
+  body.menu-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  /* Full-screen overlay menu */
+  .mobile-menu{
+    position:fixed; inset:0; z-index:45;
+    background:rgba(6,11,20,.98); backdrop-filter:blur(8px);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; visibility:hidden; transition:opacity .3s ease, visibility .3s ease;
+  }
+  body.menu-open .mobile-menu{ opacity:1; visibility:visible; }
+  .mm-links{ display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; }
+  .mm-links a{ font-family:var(--serif); font-size:30px; font-weight:600; color:var(--ink); padding:12px 20px; transition:color .18s ease, transform .18s ease; opacity:0; transform:translateY(12px); }
+  body.menu-open .mm-links a{ opacity:1; transform:none; }
+  body.menu-open .mm-links a:nth-child(1){ transition-delay:.05s; }
+  body.menu-open .mm-links a:nth-child(2){ transition-delay:.10s; }
+  body.menu-open .mm-links a:nth-child(3){ transition-delay:.15s; }
+  body.menu-open .mm-links a:nth-child(4){ transition-delay:.20s; }
+  body.menu-open .mm-links a:nth-child(5){ transition-delay:.25s; }
+  .mm-links a:not(.btn):hover{ color:var(--teal); }
+  .mm-call{ margin-top:20px; font-family:var(--sans) !important; font-size:16px !important; padding:16px 28px !important; }
+  .mm-links a.mm-call{ transform:translateY(12px); }
+  body.menu-open .mm-links a.mm-call{ transform:none; }
+
+  @media (max-width:820px){
+    .nav-links{ display:none; }
+    .nav-cta{ display:none; }      /* Call now lives inside the menu */
+    .nav-toggle{ display:flex; }
+  }
+  @media (min-width:821px){
+    .mobile-menu{ display:none; }
+  }
+
 </style>
 <style>
   .contact-wrap{ padding:clamp(70px,10vw,120px) 0 clamp(60px,8vw,110px); position:relative; overflow:hidden; }
@@ -293,8 +331,21 @@ footer .wrap{ padding-top:56px; padding-bottom:40px; }
       <a href="report-card.html">Contact</a>
     </nav>
     <a class="btn btn--primary nav-cta" href="tel:9482206393" aria-label="Call 948-220-6393"><span class="cta-long">Call 948-220-6393</span><span class="cta-short">Call</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mm-links" aria-label="Mobile">
+      <a href="services.html">Services</a>
+      <a href="index.html#why">Why us</a>
+      <a href="index.html#serve">Who we serve</a>
+      <a href="report-card.html">Contact</a>
+      <a class="btn btn--teal mm-call" href="tel:9482206393">Call 948-220-6393</a>
+  </nav>
+</div>
+
 
 <main>
   <div class="contact-wrap">
@@ -423,6 +474,25 @@ footer .wrap{ padding-top:56px; padding-bottom:40px; }
   });
 })();
 
+</script>
+<script>
+// Mobile full-screen menu toggle
+(function(){
+  var btn=document.getElementById("navToggle");
+  var menu=document.getElementById("mobileMenu");
+  if(!btn||!menu) return;
+  function setOpen(open){
+    document.body.classList.toggle("menu-open", open);
+    btn.setAttribute("aria-expanded", open?"true":"false");
+    menu.setAttribute("aria-hidden", open?"false":"true");
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+  btn.addEventListener("click", function(){ setOpen(!document.body.classList.contains("menu-open")); });
+  // Close when a link is tapped
+  menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ setOpen(false); }); });
+  // Close on Escape
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape") setOpen(false); });
+})();
 </script>
 </body>
 </html>
